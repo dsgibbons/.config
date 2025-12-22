@@ -1,0 +1,35 @@
+theme = "nord"
+
+[editor]
+line-number = "relative"
+true-color = true
+mouse = false
+bufferline = "multiple"
+cursorline = true
+idle-timeout = 0
+
+[editor.soft-wrap]
+enable = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.indent-guides]
+render = true
+
+[editor.file-picker]
+hidden = false
+
+[editor.lsp]
+display-inlay-hints = true
+
+[keys.normal]
+"g" = { "e" = "goto_last_line" }
+"x" = "extend_to_line_bounds"
+"X" = "extend_line_below"
+"ret" = "goto_word"
+
+[keys.select]
+"g" = { "e" = "extend_to_file_end" }

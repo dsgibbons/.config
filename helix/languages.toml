@@ -1,0 +1,54 @@
+use-grammars = { only = [ "rust", "python" ] }
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+config = { lint = true, inlayHint.enable = true }
+
+[language-server.ruff-lsp]
+command = "uvx"
+args = ["ruff", "server"]
+
+[[language]]
+name = "python"
+roots = ["pyproject.toml"]
+language-servers = [ "pyright" , "ruff-lsp" ]
+formatter = {command = "bash", args = ["-c", "uvx ruff check --fix - | ruff format -"]}
+auto-format = true
+
+[[language]]
+name = "markdown"
+formatter = { command = 'npx', args = ["prettier", "--config", "~/.prettierrc", "--parser", "markdown"] }
+auto-format = true
+
+[[language]]
+name = "rust"
+auto-format = true
+
+roots = [
+  "Cargo.toml",
+  "Cargo.lock"
+]
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+
+[language-server.rust-analyzer.config]
+inlayHints.bindingModeHints.enable = false
+inlayHints.closingBraceHints.minLines = 10
+# inlayHints.closureReturnTypeHints.enable = "with_block"
+inlayHints.closureReturnTypeHints.enable = "never"
+inlayHints.discriminantHints.enable = "fieldless"
+inlayHints.lifetimeElisionHints.enable = "skip_trivial"
+inlayHints.parameterHints.enable = false
+inlayHints.typeHints.hideClosureInitialization = true
+
+[language-server.rust-analyzer.environment]
+CARGO_TARGET_DIR = "target/analyzer"
