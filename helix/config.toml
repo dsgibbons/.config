@@ -27,8 +27,6 @@ display-inlay-hints = true
 
 [keys.normal]
 "g" = { "e" = "goto_last_line" }
-"x" = "extend_to_line_bounds"
-"X" = "extend_line_below"
 "ret" = "goto_word"
 
 [keys.select]
